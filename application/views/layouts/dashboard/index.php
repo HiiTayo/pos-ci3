@@ -78,7 +78,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Rp</span>
                   </div>
-                  <input type="text" class="form-control" id="harga_barang" placeholder="1.000" onkeyup="formatRp(this.value)">
+                  <input type="number" class="form-control" id="harga_barang" placeholder="1.000" onkeyup="formatRp(this.value)">
                 </div>
               </div>
               <div class="form-group">
@@ -133,7 +133,8 @@
 
  function formatRp(value){
 
-      number=parseInt(value);
+
+      number=parseInt(addCommas(value));
 
       console.log(number);
 
@@ -150,4 +151,17 @@
             .replace(new RegExp('\\' + decimalSeparator), '.')
         );
     }
+
+    function addCommas(nStr)
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 </script>
